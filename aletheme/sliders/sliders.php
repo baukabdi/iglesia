@@ -37,16 +37,16 @@ class Aletheme_Sliders
 				}
 				exit;
 			}
-            if(isset($_GET['action'])){
-                if ($_GET['action'] == 'delete') {
-                    if (wp_verify_nonce($_GET['_wpnonce'], 'aletheme_slider_delete_nonce')) {
-                        $this->delete($_GET['id']);
-                    }
-                    wp_redirect(self::slidersUrl());
-                    exit;
-                }
-                add_action( 'admin_print_scripts', array($this, 'adminScripts') );
-            }
+			if(isset($_GET['action'])){
+				if ($_GET['action'] == 'delete') {
+					if (wp_verify_nonce($_GET['_wpnonce'], 'aletheme_slider_delete_nonce')) {
+						$this->delete($_GET['id']);
+					}
+					wp_redirect(self::slidersUrl());
+					exit;
+				}
+				add_action( 'admin_print_scripts', array($this, 'adminScripts') );
+			}
 		}
 		
 		add_action('wp_ajax_save_slider', array($this, 'save'));
@@ -81,7 +81,7 @@ class Aletheme_Sliders
 	
 	public function init()
 	{
-        if(!isset($_GET['action'])) {$_GET['action']='';}
+		if(!isset($_GET['action'])) {$_GET['action']='';}
 
 		$this->action = (string) $_GET['action'];
 		if($this->action == 'create') {
@@ -356,55 +356,54 @@ class Aletheme_Sliders
 								<div class="html">
 									<?php echo $slide['html']; ?>
 								</div>
-							<?php elseif ($slide['image']) : ?>
-								<figure>
-									<?php if ($slide['url']) : ?>
-									<a href="<?php echo $slide['url'] ?>">
-									<?php endif; ?>
-									<img src="<?php echo $slide['image']?>" alt="<?php $slide['title'] ?>" />
-									<?php if ($slide['url']) : ?>
-										</a>
-									<?php endif; ?>
-								</figure>
-								<?php if ($slide['title'] || $slide['description']) : ?>
-									<div class="descr">
-										<?php if ($slide['title']) : ?>
-											<h3><?php echo $slide['title']; ?></h3>
+								<?php elseif ($slide['image']) : ?>
+									<figure>
+										<?php if ($slide['url']) : ?>
+											<a href="<?php echo $slide['url'] ?>">
+											<?php endif; ?>
+											<img src="<?php echo $slide['image']?>" alt="<?php $slide['title'] ?>" />
+											<?php if ($slide['url']) : ?>
+											</a>
 										<?php endif; ?>
-										<?php if ($slide['description']) : ?>
-											<div class="text">
-												<?php echo apply_filters('the_content', $slide['description']); ?>
-											</div>
-										<?php endif; ?>
-									</div>
+									</figure>
+									<?php if ($slide['title'] || $slide['description']) : ?>
+										<div class="descr">
+											<?php if ($slide['title']) : ?>
+												<h3><?php echo $slide['title']; ?></h3>
+											<?php endif; ?>
+											<?php if ($slide['description']) : ?>
+												<div class="text">
+													<?php echo apply_filters('the_content', $slide['description']); ?>
+												</div>
+											<?php endif; ?>
+										</div>
+									<?php endif; ?>
 								<?php endif; ?>
-							<?php endif; ?>
-						</li>
-					<?php endforeach; ?>
-				</ul>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<script type="text/javascript">
-            jQuery(window).load(function(){
-                jQuery('#<?php echo $slider_id ?> .flexslider').fitVids().flexslider({
-					animation: "<?php echo $animation ?>",
-					slideshow: <?php echo $slideshow ? 'true' : 'false' ?>,
-					controlNav: <?php echo $controlnav ? 'true' : 'false' ?>,
-					randomize: <?php echo $randomize ? 'true' : 'false' ?>,
-					animationLoop: true,
-					smoothHeight: true,
-					multipleKeyboard:true,
-					video:true,
-					start: function(slider){
-						slider.removeClass('loading');
-					}
+			<script type="text/javascript">
+				jQuery(window).load(function(){
+					jQuery('#<?php echo $slider_id ?> .flexslider').fitVids().flexslider({
+						animation: "<?php echo $animation ?>",
+						slideshow: <?php echo $slideshow ? 'true' : 'false' ?>,
+						controlNav: <?php echo $controlnav ? 'true' : 'false' ?>,
+						randomize: <?php echo $randomize ? 'true' : 'false' ?>,
+						animationLoop: true,
+						smoothHeight: true,
+						multipleKeyboard:true,
+						video:true,
+						start: function(slider){
+							slider.removeClass('loading');
+						}
+					});
 				});
+			</script>
+			<?php
+		}
 
-			});
-		</script>
-		<?php
-	}
-	
 	/**
 	 * Adds a button near the media button on the top of the Wordpress editor
 	 * @param string $page

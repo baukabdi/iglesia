@@ -43,9 +43,22 @@ function aletheme_get_options() {
                         "std" => "",
                         "type" => "upload");
 
+    $options[] = array( "name" => "Insert the slider slug",
+                        "desc" => "Get the slider slug on the slider Setting Page",
+                        "id" => "ale_homesliderslug",
+                        "std" => "",
+                        "type" => "text",
+                        "options" => $headerfont);
+
     $options[] = array( 'name' => "Manage Background",
                         'desc' => "Select the background color, or upload a custom background image. Default background is the #f5f5f5 color",
                         'id' => 'ale_background',
+                        'std' => $background_defaults,
+                        'type' => 'background');
+
+    $options[] = array( 'name' => "Footer Background",
+                        'desc' => "Select the background color, or upload a custom background image. Default background is the #f5f5f5 color",
+                        'id' => 'ale_footerbackground',
                         'std' => $background_defaults,
                         'type' => 'background');
 
@@ -184,34 +197,14 @@ function aletheme_get_options() {
 						"id" => "ale_fb",
 						"std" => "",
 						"type" => "text");
-    $options[] = array( "name" => "Google+",
-                        "desc" => "Your google+ profile URL.",
-                        "id" => "ale_gog",
-                        "std" => "",
-                        "type" => "text");
-    $options[] = array( "name" => "Pinterest",
-                        "desc" => "Your pinteres profile URL.",
-                        "id" => "ale_pint",
-                        "std" => "",
-                        "type" => "text");
-    $options[] = array( "name" => "Flickr",
-                        "desc" => "Your flickr profile URL.",
-                        "id" => "ale_flickr",
-                        "std" => "",
-                        "type" => "text");
-    $options[] = array( "name" => "Linkedin",
-                        "desc" => "Your linked profile URL.",
-                        "id" => "ale_linked",
-                        "std" => "",
-                        "type" => "text");
     $options[] = array( "name" => "Instagram",
                         "desc" => "Your instagram profile URL.",
                         "id" => "ale_insta",
                         "std" => "",
                         "type" => "text");
-    $options[] = array( "name" => "Email",
-                        "desc" => "Your email",
-                        "id" => "ale_emailcont",
+    $options[] = array( "name" => "Vimeo",
+                        "desc" => "Your Vimeo link",
+                        "id" => "ale_vi",
                         "std" => "",
                         "type" => "text");
     $options[] = array( "name" => "Show RSS",
@@ -266,13 +259,30 @@ function aletheme_get_options() {
     $options[] = array( "name" => "Footer menu title",
                         "desc" => "Insert the footer menu title",
                         "id" => "ale_footermenutitle_1",
-                        "std" => "",
                         "type" => "images",
                         "options" => array(
                             'image_1' => $imagepath.'/1col.png',
                             'image_2' => $imagepath.'/2cl.png',
                             'image_3' => $imagepath.'/2cr.png', ),
         );
+
+    $options[] = array( "name" => "Footer phone",
+                        "desc" => "Insert the footer phone",
+                        "id" => "ale_footerphone",
+                        "type" => "text",
+    );
+
+    $options[] = array( "name" => "Footer address",
+                        "desc" => "Insert the footer address",
+                        "id" => "ale_footeraddress",
+                        "type" => "text",
+    );
+
+    $options[] = array( "name" => "Footer website",
+                        "desc" => "Insert the your website",
+                        "id" => "ale_footerwebsite",
+                        "type" => "text",
+    );
 	
 	return $options;
 }

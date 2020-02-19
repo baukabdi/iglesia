@@ -5,3 +5,7 @@
   -ms-column-break-inside: avoid;
   display: table;
 }
+@font-face {
+  src: url('../fonts/PlayfairDisplay-Regular.ttf');
+  font-family: "PlayfairDisplay", sans-serif;
+}

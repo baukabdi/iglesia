@@ -15,6 +15,37 @@ jQuery(function($) {
         controlNav: false
     });
 
+    var bodyWidth = $('body').width() / 2;
+    var fPrev = '<i class="fa fa-angle-left" aria-hidden="true"></i>';
+    var fNext = '<i class="fa fa-angle-right" aria-hidden="true"></i>';
+
+    $('.flexslider').flexslider({
+        animation:'slide',
+        controlNav: false,
+        itemWidth: bodyWidth,
+        slideshow: false,
+        prevText: fPrev,
+        nextText: fNext
+    });
+
+    $('.menu_icon').on('click', function () {
+        var icon = $(this).find('i');
+        var dataMenuHash = '#' + $(this).data('menu');
+        var dataMenu = $(dataMenuHash);
+
+        if (!icon.hasClass('fa-bars') && dataMenu.is(':visible')) {
+            icon.addClass('fa-bars');
+            icon.removeClass('fa-times');
+            dataMenu.slideUp('fast');
+        }
+        else {  
+            icon.removeClass('fa-bars');
+            icon.addClass('fa-times');
+            dataMenu.slideDown('fast');
+        }
+
+    });
+
 });
 
 Modernizr.addTest('ipad', function () {
